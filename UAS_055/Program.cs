@@ -17,7 +17,7 @@ namespace UAS_055
             FRONT = -1;
             REAR = -1;
         }
-        public void insert(string id, string )
+        public void insert(string element)
         {
             /*This statement checks for the overflow condition*/
             if ((FRONT == 0 && REAR == max - 1) || (FRONT == REAR + 1))
@@ -44,8 +44,36 @@ namespace UAS_055
                     REAR = REAR + 1;
             }
             /*Once the position of REAR is determined, the element is added at its proper place,*/
-            queue_array[REAR] = id;
+            queue_array[REAR] = element;
+        }
 
+        public void insDetail()
+        {
+
+            int brng = 1;
+            string[] name = new string[brng];
+            string[] iden = new string[brng];
+            string[] harg = new string[brng];
+
+            for (int i = 0; i < brng; i++)
+            {
+                Console.Write("Masukkan Nama Barang: ");
+                name[i] = Console.ReadLine();
+                Console.Write("Masukkan ID Barang: ");
+                iden[i] = Console.ReadLine();
+                Console.Write("Masukkan Harga Barang: ");
+                harg[i] = Console.ReadLine();
+
+                Console.WriteLine("");
+
+                Console.WriteLine("Nama\tID\tHarga");
+                Console.WriteLine("");
+            }
+
+            for (int i = 0; i < brng; i++)
+            {
+                Console.WriteLine(name[i] + "\t" + iden[i] + "\t" + harg[i]);
+            }
         }
 
         public void remove()
@@ -56,7 +84,7 @@ namespace UAS_055
                 Console.WriteLine("Queue underflow\n");
                 return;
             }
-            Console.WriteLine("\nThe element deleted from the queue is: " +
+            Console.WriteLine("\nJenis barang yang di delete adalah: " +
                 queue_array[FRONT] + "\n");
             /*Checks if the queue has one element.*/
             if (FRONT == REAR)
@@ -87,10 +115,10 @@ namespace UAS_055
             /*Checks if the queue is empty.*/
             if (FRONT == -1)
             {
-                Console.WriteLine("Queue is empty\n");
+                Console.WriteLine("Tidak ada barang\n");
                 return;
             }
-            Console.WriteLine("\nElements in the queue are...............\n");
+            Console.WriteLine("\nBarang yang ada adalah...............\n");
             if (FRONT_position <= REAR_position)
             {
                 /*Traverses the queue till the last element present in an array.*/
@@ -121,7 +149,7 @@ namespace UAS_055
             }
         }
 
-        static void Main(string[] args)
+        static void Main(string[] strings)
         {
             Queues q = new Queues();
             char ch;
@@ -130,9 +158,9 @@ namespace UAS_055
                 try
                 {
                     Console.WriteLine("Menu");
-                    Console.WriteLine("1. Implement insert operation");
-                    Console.WriteLine("2. Implement delete operation");
-                    Console.WriteLine("3. Display values");
+                    Console.WriteLine("1. Insert Barang");
+                    Console.WriteLine("2. Delete Barang");
+                    Console.WriteLine("3. Display Barang");
                     Console.WriteLine("4. Exit");
                     Console.Write("\nEnter your choice (1-4):");
                     ch = Convert.ToChar(Console.ReadLine());
@@ -141,10 +169,11 @@ namespace UAS_055
                     {
                         case '1':
                             {
-                                Console.WriteLine("Enter a number: ");
+                                Console.WriteLine("Masukkan jenis barang: ");
                                 string num = Convert.ToString(System.Console.ReadLine());
                                 Console.WriteLine();
                                 q.insert(num);
+                                q.insDetail();
                             }
                             break;
                         case '2':
@@ -166,7 +195,7 @@ namespace UAS_055
                             break;
                     }
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     Console.WriteLine("Check for the values entered.");
                 }
@@ -174,3 +203,10 @@ namespace UAS_055
         }
     }
 }
+
+//2. Saya memakai circular queues, agar Indri dapat mengatur data dari barang barang nya sesuai dengan urutan dari kapan barang tersebut datang ke toko indri dari distributor//
+
+//3. Algoritma Queue merupakan struktur data dimana satu data dapat ditambakan diakhir disebut REAR dan data dihapus dari yang paling terakhir disebut FRONT//
+
+//4. a. kedalamannya adalah 4
+//   b. 15, 25, 20, 31, 35, 32, 30, 48, 66, 69, 67, 65, 94, 99, 98, 90, 70, 50//
